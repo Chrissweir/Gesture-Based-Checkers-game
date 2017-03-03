@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Checkers.unity
+  isLoaded: 1
+  isActive: 1
