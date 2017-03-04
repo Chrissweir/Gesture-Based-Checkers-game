@@ -109,6 +109,25 @@ public class Server : MonoBehaviour
         }
     }
 
+    //Server Send
+    private void Broadcast(string data, List<ServerClient> cl)
+    {
+        foreach(ServerClient sc in cl)
+        {
+            try
+            {
+                StreamWriter writer = new StreamWriter(sc.tcp.GetStream());
+                writer.WriteLine(data);
+                writer.Flush();
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Write error: " + e.Message);
+            }
+        }
+    }
+
+    //Server Read
     private void OnIncomingData(ServerClient c, string data)
     {
         Debug.Log(c.clientName + " : " + data);
