@@ -35,7 +35,7 @@ public class CheckersBoard : MonoBehaviour {
     {
         UpdateMouseOver();
 
-        //If it is my turn
+        if((isWhite)?isWhiteTurn:!isWhiteTurn)
         {
             int x = (int)mouseOver.x;
             int y = (int)mouseOver.y;
@@ -188,17 +188,70 @@ public class CheckersBoard : MonoBehaviour {
 
     private void EndTurn()
     {
+        int x = (int)endDrag.x;
+        int y = (int)endDrag.y;
+
+        //Promotions
+        if(selectedPiece != null)
+        {
+            if(selectedPiece.isWhite && !selectedPiece.isKing && y == 7)
+            {
+                selectedPiece.isKing = true;
+                selectedPiece.transform.Rotate(Vector3.right * 180);
+            }
+            else if (!selectedPiece.isWhite && !selectedPiece.isKing && y == 0)
+            {
+                selectedPiece.isKing = true;
+                selectedPiece.transform.Rotate(Vector3.right * 180);
+            }
+        }
+
         selectedPiece = null;
         startDrag = Vector2.zero;
 
+        if (ScanForPossibleMove(selectedPiece, x, y).Count != 0 && hasKilled)
+            return;
+
         isWhiteTurn = !isWhiteTurn;
+        isWhite = !isWhite;
         hasKilled = false;
         CheckVictory();
     }
 
     private void CheckVictory()
     {
-         
+        var ps = FindObjectsOfType<Piece>();
+        bool hasWhite = false, hasBlack = false;
+        for(int i = 0; i < ps.Length; i++)
+        {
+            if (ps[i].isWhite)
+                hasWhite = true;
+            else
+                hasBlack = true;
+        }
+
+        if (!hasWhite)
+            Victory(false);
+        if (!hasBlack)
+            Victory(true);
+    }
+
+    private void Victory(bool isWhite)
+    {
+        if (isWhite)
+            Debug.Log("White team has won!");
+        else
+            Debug.Log("Black team has won!");
+    }
+
+    private List<Piece> ScanForPossibleMove(Piece p, int x, int y)
+    {
+        forcedPieces = new List<Piece>();
+
+        if (pieces[x, y].isForcedToMove(pieces, x, y))
+            forcedPieces.Add(pieces[x, y]);
+
+        return forcedPieces;
     }
 
     private List<Piece> ScanForPossibleMove()
