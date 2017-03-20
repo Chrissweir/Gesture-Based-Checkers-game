@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
             s.Init();
             Client c = Instantiate(clientPrefab).GetComponent<Client>();
             c.clientName = nameInput.text;
+            c.isHost = true;
+
             if (c.clientName == "")
                 c.clientName = "Host";
             c.ConnectToServer("127.0.0.1", 2017);
@@ -86,5 +89,15 @@ public class GameManager : MonoBehaviour
         Client c = FindObjectOfType<Client>();
         if (c != null)
             Destroy(c.gameObject);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void HotseatButton()
+    {
+        SceneManager.LoadScene("Game");
     }
 }
