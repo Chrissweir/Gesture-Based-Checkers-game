@@ -2,15 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CheckersBoard : MonoBehaviour {
+
+    public static CheckersBoard Instance { set; get; }
 
     public Piece[,] pieces = new Piece[8,8];
     public GameObject whitePiecePrefab;
     public GameObject blackPiecePrefab;
 
+    public GameObject highlightsContainer;
+
+    public CanvasGroup alertCanvas;
+    private float lastAlert;
+    private bool alertActive;
+    private bool gameIsOver;
+    private float winTime;
+
     private Vector3 boardOffset = new Vector3(-4.0f,0,-4.0f);
-    private Vector3 pieceOffset = new Vector3(0.5f, 0, 0.5f);
+    private Vector3 pieceOffset = new Vector3(0.5f, 0.125f, 0.5f);
 
     public bool isWhite;
     private bool isWhiteTurn;
@@ -23,9 +35,28 @@ public class CheckersBoard : MonoBehaviour {
     private Vector2 startDrag;
     private Vector2 endDrag;
 
+    private Client client;
 
     private void Start()
     {
+        Instance = this;
+        client = FindObjectOfType<Client>();
+
+        foreach(Transform t in highlightsContainer.transform)
+        {
+            t.position = Vector3.down * 100;
+        }
+
+        if (client)
+        {
+            isWhite = client.isHost;
+            Alert(client.players[0].name + " VS " + client.players[1].name);
+        }
+        else
+        {
+            Alert("WHITE PLAYER STARTS");
+        }
+
         isWhiteTurn = true;
         forcedPieces = new List<Piece>();
         GenerateBoard();
@@ -33,6 +64,30 @@ public class CheckersBoard : MonoBehaviour {
 
     private void Update()
     {
+        if (gameIsOver)
+        {
+            if(Time.time - winTime > 3.0f)
+            {
+                Server server = FindObjectOfType<Server>();
+                Client client = FindObjectOfType<Client>();
+
+                if (server)
+                    Destroy(server.gameObject);
+
+                if (client)
+                    Destroy(client.gameObject);
+
+                SceneManager.LoadScene("Menu");
+            }
+            return;
+        }
+
+        foreach (Transform t in highlightsContainer.transform)
+        {
+            t.Rotate(Vector3.up * 90 * Time.deltaTime);
+        }
+
+        UpdateAlert();
         UpdateMouseOver();
 
         if((isWhite)?isWhiteTurn:!isWhiteTurn)
@@ -114,7 +169,7 @@ public class CheckersBoard : MonoBehaviour {
         }
     }
 
-    private void TryMove(int x1, int y1, int x2, int y2)
+    public void TryMove(int x1, int y1, int x2, int y2)
     {
         forcedPieces = ScanForPossibleMove();
 
@@ -132,6 +187,7 @@ public class CheckersBoard : MonoBehaviour {
 
             startDrag = Vector2.zero;
             selectedPiece = null;
+            Hightlight();
             return;
         }
 
@@ -143,6 +199,7 @@ public class CheckersBoard : MonoBehaviour {
                 MovePiece(selectedPiece, x1, y1);
                 startDrag = Vector2.zero;
                 selectedPiece = null;
+                Hightlight();
                 return;
             }
 
@@ -157,7 +214,7 @@ public class CheckersBoard : MonoBehaviour {
                     if(p != null)
                     {
                         pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
-                        Destroy(p.gameObject);
+                        DestroyImmediate(p.gameObject);
                         hasKilled = true;
                     }
                 }
@@ -168,6 +225,7 @@ public class CheckersBoard : MonoBehaviour {
                     MovePiece(selectedPiece, x1, y1);
                     startDrag = Vector2.zero;
                     selectedPiece = null;
+                    Hightlight();
                     return;
                 }
                 pieces[x2, y2] = selectedPiece;
@@ -181,6 +239,7 @@ public class CheckersBoard : MonoBehaviour {
                 MovePiece(selectedPiece, x1, y1);
                 startDrag = Vector2.zero;
                 selectedPiece = null;
+                Hightlight();
                 return;
             }
         }
@@ -205,7 +264,18 @@ public class CheckersBoard : MonoBehaviour {
                 selectedPiece.transform.Rotate(Vector3.right * 180);
             }
         }
+        if (client)
+        {
 
+            // Send the moves to the other player
+            string msg = "CMOVE|";
+            msg += startDrag.x.ToString() + "|";
+            msg += startDrag.y.ToString() + "|";
+            msg += endDrag.x.ToString() + "|";
+            msg += endDrag.y.ToString();
+
+            client.Send(msg);
+        }
         selectedPiece = null;
         startDrag = Vector2.zero;
 
@@ -213,9 +283,30 @@ public class CheckersBoard : MonoBehaviour {
             return;
 
         isWhiteTurn = !isWhiteTurn;
-        isWhite = !isWhite;
+      //  isWhite = !isWhite;
         hasKilled = false;
         CheckVictory();
+
+        if (!gameIsOver)
+        {
+            if (!client)
+            {
+                isWhite = !isWhite;
+                if (isWhite)
+                    Alert("White player's turn");
+                else
+                    Alert("Black player's turn");
+            }
+            else
+            {
+                if (isWhite)
+                    Alert(client.players[0].name + "'s turn");
+                else
+                    Alert(client.players[1].name + "'s turn");
+            }
+        }
+
+        ScanForPossibleMove();
     }
 
     private void CheckVictory()
@@ -238,10 +329,14 @@ public class CheckersBoard : MonoBehaviour {
 
     private void Victory(bool isWhite)
     {
+        winTime = Time.time;
+
         if (isWhite)
-            Debug.Log("White team has won!");
+            Alert("White player has won!");
         else
-            Debug.Log("Black team has won!");
+            Alert("Black player has won!");
+
+        gameIsOver = true;
     }
 
     private List<Piece> ScanForPossibleMove(Piece p, int x, int y)
@@ -251,6 +346,7 @@ public class CheckersBoard : MonoBehaviour {
         if (pieces[x, y].isForcedToMove(pieces, x, y))
             forcedPieces.Add(pieces[x, y]);
 
+        Hightlight();
         return forcedPieces;
     }
 
@@ -265,7 +361,22 @@ public class CheckersBoard : MonoBehaviour {
                     if (pieces[i, j].isForcedToMove(pieces, i, j))
                         forcedPieces.Add(pieces[i, j]);
 
+        Hightlight();
         return forcedPieces;                        
+    }
+
+    private void Hightlight()
+    {
+        foreach (Transform t in highlightsContainer.transform)
+        {
+            t.position = Vector3.down * 100;
+        }
+
+        if (forcedPieces.Count > 0)
+            highlightsContainer.transform.GetChild(0).transform.position = forcedPieces[0].transform.position + Vector3.down * 0.1f;
+
+        if (forcedPieces.Count > 1)
+            highlightsContainer.transform.GetChild(1).transform.position = forcedPieces[1].transform.position + Vector3.down * 0.1f;
     }
 
     private void GenerateBoard()
@@ -306,5 +417,30 @@ public class CheckersBoard : MonoBehaviour {
     private void MovePiece(Piece p, int x, int y)
     {
         p.transform.position = (Vector3.right * x) + (Vector3.forward * y) + boardOffset + pieceOffset;
+    }
+
+    public void Alert(string text)
+    {
+        alertCanvas.GetComponentInChildren<Text>().text = text;
+        alertCanvas.alpha = 1;
+        lastAlert = Time.time;
+        alertActive = true;
+    }
+
+    public void UpdateAlert()
+    {
+        if(alertActive)
+        {
+            if(Time.time - lastAlert > 1.5f)
+            {
+                alertCanvas.alpha = 1 - ((Time.time - lastAlert) - 1.5f);
+
+                if(Time.time - lastAlert > 2.5f)
+                {
+                    alertActive = false;
+                }
+            }
+        }
+            
     }
 }
