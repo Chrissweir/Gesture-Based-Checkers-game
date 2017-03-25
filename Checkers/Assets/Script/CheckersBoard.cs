@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Leap.Unity;
+using Leap;
 
 public class CheckersBoard : MonoBehaviour {
 
@@ -37,6 +39,36 @@ public class CheckersBoard : MonoBehaviour {
 
     private Client client;
 
+    public FingerModel finger;
+
+    [SerializeField]
+    private PinchDetector _pinchDetectorA;
+    public PinchDetector PinchDetectorA
+    {
+        get
+        {
+            return _pinchDetectorA;
+        }
+        set
+        {
+            _pinchDetectorA = value;
+        }
+    }
+
+    [SerializeField]
+    private PinchDetector _pinchDetectorB;
+    public PinchDetector PinchDetectorB
+    {
+        get
+        {
+            return _pinchDetectorB;
+        }
+        set
+        {
+            _pinchDetectorB = value;
+        }
+    }
+
     private void Start()
     {
         Instance = this;
@@ -64,6 +96,7 @@ public class CheckersBoard : MonoBehaviour {
 
     private void Update()
     {
+        //Debug.Log((int)(finger.GetTipPosition().x - boardOffset.x));
         if (gameIsOver)
         {
             if(Time.time - winTime > 3.0f)
@@ -98,11 +131,17 @@ public class CheckersBoard : MonoBehaviour {
             if (selectedPiece != null)
                 UpdatePieceDrag(selectedPiece);
 
-            if (Input.GetMouseButtonDown(0))
+            if (_pinchDetectorB.DidStartPinch || Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("Pinching");
                 SelectPiece(x, y);
+            }
 
-            if (Input.GetMouseButtonUp(0))
-                TryMove((int)startDrag.x, (int)startDrag.y,x,y);
+            if (_pinchDetectorB.DidEndPinch || Input.GetMouseButtonUp(0))
+            {
+                Debug.Log("Not Pinching");
+                TryMove((int)startDrag.x, (int)startDrag.y, x, y);
+            }
         }
     }
 
@@ -116,7 +155,8 @@ public class CheckersBoard : MonoBehaviour {
         }
 
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
+        
+        if (Physics.Raycast(finger.GetTipPosition(), finger.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
         {
             mouseOver.x = (int)(hit.point.x - boardOffset.x);
             mouseOver.y = (int)(hit.point.z - boardOffset.z);
@@ -137,7 +177,7 @@ public class CheckersBoard : MonoBehaviour {
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
+        if (Physics.Raycast(finger.GetTipPosition(), finger.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
         {
             p.transform.position = hit.point + Vector3.up;
         }
