@@ -39,7 +39,8 @@ public class CheckersBoard : MonoBehaviour {
 
     private Client client;
 
-    public FingerModel finger;
+    public FingerModel fingerRight;
+    public FingerModel fingerLeft;
 
     [SerializeField]
     private PinchDetector _pinchDetectorA;
@@ -131,13 +132,13 @@ public class CheckersBoard : MonoBehaviour {
             if (selectedPiece != null)
                 UpdatePieceDrag(selectedPiece);
 
-            if (_pinchDetectorB.DidStartPinch || Input.GetMouseButtonDown(0))
+            if (_pinchDetectorA.DidStartPinch || _pinchDetectorB.DidStartPinch || Input.GetMouseButtonDown(0))
             {
                 Debug.Log("Pinching");
                 SelectPiece(x, y);
             }
 
-            if (_pinchDetectorB.DidEndPinch || Input.GetMouseButtonUp(0))
+            if (_pinchDetectorA.DidEndPinch || _pinchDetectorB.DidEndPinch || Input.GetMouseButtonUp(0))
             {
                 Debug.Log("Not Pinching");
                 TryMove((int)startDrag.x, (int)startDrag.y, x, y);
@@ -155,8 +156,8 @@ public class CheckersBoard : MonoBehaviour {
         }
 
         RaycastHit hit;
-        
-        if (Physics.Raycast(finger.GetTipPosition(), finger.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
+
+        if (Physics.Raycast(_pinchDetectorA.Position, fingerLeft.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(_pinchDetectorB.Position, fingerRight.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
         {
             mouseOver.x = (int)(hit.point.x - boardOffset.x);
             mouseOver.y = (int)(hit.point.z - boardOffset.z);
@@ -177,7 +178,7 @@ public class CheckersBoard : MonoBehaviour {
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(finger.GetTipPosition(), finger.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
+        if (Physics.Raycast(_pinchDetectorA.Position, fingerLeft.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(_pinchDetectorB.Position, fingerRight.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
         {
             p.transform.position = hit.point + Vector3.up;
         }
