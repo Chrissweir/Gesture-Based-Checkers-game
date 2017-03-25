@@ -156,7 +156,6 @@ public class CheckersBoard : MonoBehaviour {
         }
 
         RaycastHit hit;
-
         if (Physics.Raycast(_pinchDetectorA.Position, fingerLeft.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(_pinchDetectorB.Position, fingerRight.GetRay().direction, out hit, 25.0f, LayerMask.GetMask("Board")) || Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
         {
             mouseOver.x = (int)(hit.point.x - boardOffset.x);
