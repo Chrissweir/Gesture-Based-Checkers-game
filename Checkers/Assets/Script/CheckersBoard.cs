@@ -483,4 +483,9 @@ public class CheckersBoard : MonoBehaviour {
         }
             
     }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
