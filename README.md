@@ -1,8 +1,8 @@
 **Gesture Based UI **
 ===================
 
-**Students: Dara Starr Christopher Weir**<br>
-**Student nunbers: G00209787 G00309429**<br>
+**Students: Dara Starr, Christopher Weir**<br>
+**Student numbers: G00209787, G00309429**<br>
 **Course: Software Development**<br>
 **Module: Gesure Based UI**<br>
 **Lecturer: Damien Costelloe**<br>
