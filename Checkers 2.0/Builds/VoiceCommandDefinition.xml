@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="TicGameCommandSet_en-us">
+    <CommandPrefix>Checkers</CommandPrefix>
+    <Example>Start a game of checkers</Example>
+
+    <Command Name="newGame">
+      <Example>play a new game of checkers</Example>
+      <ListenFor>[play] [a] new game [of] checkers</ListenFor>
+      <Feedback>Trying to start a new game of checkers</Feedback>
+      <Navigate Target="tbd MainPage.xaml" />
+    </Command>
+
+    <Command Name="Play">
+      <Example>play a game of hotseat</Example>
+      <ListenFor>
+        [play] [a] game [of] hotseat</ListenFor>
+        <Feedback>trying to start a game of single player hotseat</Feedback>
+        <Navigate Target="tbd"/>
+      </Command>
+
+    <Command Name="Move">
+      <Example>move piece from zero zero to zero two</Example>
+      <ListenFor>
+        [move] [a] piece [from] {number} [number] to {number} [number]</ListenFor>
+        <Feedback>trying to move piece at this space to another space</Feedback>
+        <Navigate Target="tbd"/>
+      </Command>
+  </CommandSet>
+		
+</VoiceCommands>
