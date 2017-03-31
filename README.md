@@ -21,6 +21,7 @@ The application which we have created for the Gesture Based UI module is a check
 Versions
 -------------
 ***Checkers Folder:*** This folder contains the multi-player Leap version of our game.
+
 **Checkers 2.0 Folder** This folder contains single-player non Leap version which we intend to add Cortana functionality to in the near future.
 
 How To Run
