@@ -5,7 +5,7 @@
 **Student nunbers: G00209787 G00309429**<br>
 **Course: Software Development**<br>
 **Module: Gesure Based UI**<br>
-**Lecturer: Damien Costelloe**<br>
+**Lecturer: Damien Costello**<br>
 **Galway-Mayo Institute of Technology**
 ****
 
@@ -31,3 +31,9 @@ There are two ways in which the project can be run. First way depends on the use
 The second way to run the game after you have downloaded it there is a Checkers.exe file you can run which will launch the game directly on your PC.   
 
 For multi-player when the game is launched you will see a host and connect button. One player selects host and will have to send there machines ip address to the other player. Open a command prompt and type ipconfig as a command. Under the Wireless LAN Adapter Wi-Fi section you will find your IPv4 address which is the address you fellow player will need to enter into the connect field to allow multiplayer. 
+
+
+References
+-------------
+ - [Leap Motion](https://www.leapmotion.com/)
+ - [Unity](https://unity3d.com/)
