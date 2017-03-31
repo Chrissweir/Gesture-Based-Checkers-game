@@ -1,12 +1,12 @@
 **Gesture Based UI**
 ===================
 
-**Students:** 
+**Students:**<br>
 *Dara Starr - G00209787*<br>
 *Christopher Weir - G00309429*<br>
 **Course:** *Software Development*<br>
-**Module: ** *Gesure Based UI*<br>
-**Lecturer: ** *Damien Costello*<br>
+**Module:** *Gesure Based UI*<br>
+**Lecturer:** *Damien Costello*<br>
 **Galway-Mayo Institute of Technology**
 ****
 
@@ -33,8 +33,17 @@ The second way to run the game is as follows, first make sure you have the lates
 
 For multi-player when the game is launched you will see a host and connect button. One player selects host and will have to send there machines ip address to the other player. Open a command prompt and type ipconfig as a command. Under the Wireless LAN Adapter Wi-Fi section you will find your IPv4 address which is the address you fellow player will need to enter into the connect field to allow multiplayer. 
 
+Troubleshooting References
+--------------------------
+- [Building a UWP App in Unity using TcpClient](http://stackoverflow.com/questions/39299961/building-a-uwp-app-in-unity-using-tcpclient)
+- [Can't use System.Net.Sockets.TcpClient for WSA](https://forum.unity3d.com/threads/cant-use-system-security-cryptography-x509certificates-system-net-sockets-tcpclient-for-wsa.393174/)
 
 References
 -------------
  - [Leap Motion](https://www.leapmotion.com/)
  - [Unity](https://unity3d.com/)
+ - [Setting up a Unity3D project with Leap](https://developer.leapmotion.com/documentation/unity/devguide/Project_Setup.html)
+ - [Cortana](https://www.codeproject.com/Articles/1094232/Making-your-game-stand-out-with-Cortana-on-Windows)
+ - [Multiplayer Checkers Tutorial](https://www.youtube.com/watch?v=93o_Ad5C5Ds&index=2&list=PLLH3mUGkfFCVXrGLRxfhst7pffE9o2SQO)
+ 
+ 
