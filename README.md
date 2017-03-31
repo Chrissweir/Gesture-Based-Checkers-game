@@ -18,8 +18,11 @@ Application  Overview
 -------------
 The application which we have created for the Gesture Based UI module is a checkers/draughts game made in [Unity](https://unity3d.com/) and Visual Studio 15 using [Leap Motion](https://www.leapmotion.com/). Our Checkers game has built in multi-player where two players can connect across two devices and play once internet connection is present. Also you are allowed to run it locally on your own machine and sit side by side playing. The user's will be able to use the mouse, touchscreen, their left hand or right hand where Leap is present to control the movement of the pieces.
 
+Versions
+-------------
+***Checkers Folder: *** This folder contains the multi-player Leap version of our game.
+**Checkers 2.0 Folder** This folder contains single-player non Leap version which we intend to add Cortana functionality to in the near future.
+
 How To Run
 -------------
-There are two ways in which the project can be run. First way depends on the user having the latest version of Unity installed on their PC. You can download the .zip folder using the clone or download button located above right. When you have successfully downloaded the project save it on your PC and open the project in Unity. This link [How to build a Unity projject](https://docs.unity3d.com/Manual/PublishingBuilds.html) will tell you exactly how this process is completed. 
-
-The second way to run the game after you have downloaded it there is a Checkers.exe file you can run which will launch the game directly on your PC.  
+There are two ways in which the project can be run. First way depends on the user having the latest version of Unity installed on their PC. You can download the .zip folder using the clone or download button located above right. When you have successfully downloaded the project save it on your PC and open the project in Unity. This link [How to build a Unity projject](https://docs.unity3d.com/Manual/PublishingBuilds.html) will tell you exactly how this process is completed.   
