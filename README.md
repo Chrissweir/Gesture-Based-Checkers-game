@@ -1,11 +1,12 @@
-**Gesture Based UI **
+**Gesture Based UI**
 ===================
 
-**Students: Dara Starr Christopher Weir**<br>
-**Student nunbers: G00209787 G00309429**<br>
-**Course: Software Development**<br>
-**Module: Gesure Based UI**<br>
-**Lecturer: Damien Costello**<br>
+**Students:** 
+*Dara Starr - G00209787*<br>
+*Christopher Weir - G00309429*<br>
+**Course:** *Software Development*<br>
+**Module: ** *Gesure Based UI*<br>
+**Lecturer: ** *Damien Costello*<br>
 **Galway-Mayo Institute of Technology**
 ****
 
@@ -20,15 +21,15 @@ The application which we have created for the Gesture Based UI module is a check
 
 Versions
 -------------
-***Checkers Folder:*** This folder contains the multi-player Leap version of our game.
+**Checkers:** This folder contains the multi-player Leap version of our game.
 
-**Checkers 2.0 Folder** This folder contains single-player non Leap version which we intend to add Cortana functionality to in the near future.
+**Checkers 2.0** This folder contains single-player non Leap version which we intend to add Cortana functionality to in the near future.
 
 How To Run
 -------------
-There are two ways in which the project can be run. First way depends on the user having the latest version of Unity installed on their PC. You can download the .zip folder using the clone or download button located above right. When you have successfully downloaded the project save it on your PC and open the project in Unity. This link [How to build a Unity projject](https://docs.unity3d.com/Manual/PublishingBuilds.html) will tell you exactly how this process is completed. 
+There are two ways in which the project can be run. First browse to the Checkers\Builds folder. This folder contains a built version of the game. Simply run the Checkers.exe file which will launch the game directly on your PC.
 
-The second way to run the game after you have downloaded it there is a Checkers.exe file you can run which will launch the game directly on your PC.   
+The second way to run the game is as follows, first make sure you have the latest version of Unity installed on your PC. You can download the .zip folder using the clone or download button located above right. When you have successfully downloaded the project save it on your PC and open the project in Unity. This link [How to build a Unity projject](https://docs.unity3d.com/Manual/PublishingBuilds.html) will tell you exactly how this process is completed. 
 
 For multi-player when the game is launched you will see a host and connect button. One player selects host and will have to send there machines ip address to the other player. Open a command prompt and type ipconfig as a command. Under the Wireless LAN Adapter Wi-Fi section you will find your IPv4 address which is the address you fellow player will need to enter into the connect field to allow multiplayer. 
 
