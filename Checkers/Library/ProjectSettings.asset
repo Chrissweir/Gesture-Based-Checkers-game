@@ -462,8 +462,10 @@ PlayerSettings:
   XboxOnePersistentLocalStorageSize: 0
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Build: 1
-    Collab: 1
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   cloudProjectId: 2f7eb3ba-9c5a-472d-8645-c282d551887d
   projectName: Checkers

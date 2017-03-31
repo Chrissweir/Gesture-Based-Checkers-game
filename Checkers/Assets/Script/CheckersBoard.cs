@@ -134,13 +134,11 @@ public class CheckersBoard : MonoBehaviour {
 
             if (_pinchDetectorA.DidStartPinch || _pinchDetectorB.DidStartPinch || Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Pinching");
                 SelectPiece(x, y);
             }
 
             if (_pinchDetectorA.DidEndPinch || _pinchDetectorB.DidEndPinch || Input.GetMouseButtonUp(0))
             {
-                Debug.Log("Not Pinching");
                 TryMove((int)startDrag.x, (int)startDrag.y, x, y);
             }
         }

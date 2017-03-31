@@ -2,7 +2,7 @@
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
   <CommandSet xml:lang="en-us" Name="CheckersGameCommandSet_en-us">
     <CommandPrefix>Checkers</CommandPrefix>
-    <Example>Start a game of checkers 2.0</Example>
+    <Example>Start a game of checkers</Example>
 
     <Command Name="newGame">
       <Example>play a new game of checkers</Example>

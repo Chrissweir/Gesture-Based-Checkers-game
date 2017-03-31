@@ -27,7 +27,27 @@ Checkers 2.0\bin\x64\Debug\AppX\Assets\Square44x44Logo.targetsize-24_altform-unp
 Checkers 2.0\bin\x64\Debug\AppX\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
 Checkers 2.0\bin\x64\Debug\AppX\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
 Checkers 2.0\bin\x64\Debug\AppX\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
+Checkers 2.0\bin\x64\Release\AppX\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
+Checkers 2.0\bin\x64\Release\AppX\Assets\Square150x150Logo.scale-200.png: E02834B4A5DFB97FF8E212C1CACBB084
+Checkers 2.0\bin\x64\Release\AppX\Assets\Square44x44Logo.scale-200.png: 6C6EF27184ABE9D870A9D564953775DE
+Checkers 2.0\bin\x64\Release\AppX\Assets\Square44x44Logo.targetsize-24_altform-unplated.png: 156637F7B5363E983E7A46D8E533A23D
+Checkers 2.0\bin\x64\Release\AppX\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
+Checkers 2.0\bin\x64\Release\AppX\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
+Checkers 2.0\bin\x64\Release\AppX\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
+Checkers 2.0\bin\x86\Debug\AppX\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
+Checkers 2.0\bin\x86\Debug\AppX\Assets\Square150x150Logo.scale-200.png: E02834B4A5DFB97FF8E212C1CACBB084
+Checkers 2.0\bin\x86\Debug\AppX\Assets\Square44x44Logo.scale-200.png: 6C6EF27184ABE9D870A9D564953775DE
+Checkers 2.0\bin\x86\Debug\AppX\Assets\Square44x44Logo.targetsize-24_altform-unplated.png: 156637F7B5363E983E7A46D8E533A23D
+Checkers 2.0\bin\x86\Debug\AppX\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
+Checkers 2.0\bin\x86\Debug\AppX\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
+Checkers 2.0\bin\x86\Debug\AppX\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
 Checkers 2.0\obj\x64\Debug\App.xaml: 016D28969B881E37C0324229BC94BFA8
 Checkers 2.0\obj\x64\Debug\MainPage.xaml: 3F9521214204C7A315FB928D837610C2
+Checkers 2.0\obj\x64\Release\App.xaml: 016D28969B881E37C0324229BC94BFA8
+Checkers 2.0\obj\x64\Release\MainPage.xaml: 3F9521214204C7A315FB928D837610C2
+Checkers 2.0\obj\x86\Debug\App.xaml: 016D28969B881E37C0324229BC94BFA8
+Checkers 2.0\obj\x86\Debug\MainPage.xaml: 3F9521214204C7A315FB928D837610C2
 Checkers 2.0\Properties\AssemblyInfo.cs: 9DB12914E5361235715114416F82B0D6
 Checkers 2.0\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
+GeneratedProjects\UWP\Assembly-CSharp\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
+GeneratedProjects\UWP\Assembly-CSharp-firstpass\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
