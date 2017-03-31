@@ -29,3 +29,5 @@ How To Run
 There are two ways in which the project can be run. First way depends on the user having the latest version of Unity installed on their PC. You can download the .zip folder using the clone or download button located above right. When you have successfully downloaded the project save it on your PC and open the project in Unity. This link [How to build a Unity projject](https://docs.unity3d.com/Manual/PublishingBuilds.html) will tell you exactly how this process is completed. 
 
 The second way to run the game after you have downloaded it there is a Checkers.exe file you can run which will launch the game directly on your PC.   
+
+For multi-player when the game is launched you will see a host and connect button. One player selects host and will have to send there machines ip address to the other player. Open a command prompt and type ipconfig as a command. Under the Wireless LAN Adapter Wi-Fi section you will find your IPv4 address will is the address you fellow player will need to enter into the connect field to allow multiplayer. 
