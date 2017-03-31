@@ -9,6 +9,10 @@
 **Galway-Mayo Institute of Technology**
 ****
 
+**Checkers Game**
+-------------
+![enter image description here](https://cloud.githubusercontent.com/assets/8806515/24556394/14646e48-162c-11e7-8f8f-d1244497b03b.png)
+
 
 Application  Overview
 -------------
@@ -16,4 +20,6 @@ The application which we have created for the Gesture Based UI module is a check
 
 How To Run
 -------------
-There are two ways in which the project can be run. First way depends on the user having the latest version of Unity installed on their PC. You can download the .zip folder using the clone or download button located above right. When you have successfully downloaded the project save it on your PC and open the project in Unity. This link [How to build a Unity projject](https://docs.unity3d.com/Manual/PublishingBuilds.html) will tell you exactly how this process is completed.  
+There are two ways in which the project can be run. First way depends on the user having the latest version of Unity installed on their PC. You can download the .zip folder using the clone or download button located above right. When you have successfully downloaded the project save it on your PC and open the project in Unity. This link [How to build a Unity projject](https://docs.unity3d.com/Manual/PublishingBuilds.html) will tell you exactly how this process is completed. 
+
+The second way to run the game after you have downloaded it there is a Checkers.exe file you can run which will launch the game directly on your PC.  
